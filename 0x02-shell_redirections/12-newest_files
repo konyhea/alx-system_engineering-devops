@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -mindepth 1 -type d | wc -l |sort  -r
+ls -1t | head -n 10
