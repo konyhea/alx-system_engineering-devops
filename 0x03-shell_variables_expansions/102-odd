@@ -1,5 +1,1 @@
 #!/bin/bash
-while IFS= read -r line; do
-  echo "$line"
-  read -r skip
-done < /dev/stdin
