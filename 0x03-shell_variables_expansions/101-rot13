@@ -1,0 +1,2 @@
+#!/bin/bash
+read -p "Enter text to encode/decode: " text; echo $text | tr 'A-Za-z' 'N-ZA-Mn-za-m'
