@@ -1,2 +1,2 @@
 #!/bin/bash
-echo " $(echo $PATH | tr : '\n' | wc -l) directories in the PATH variable."
+echo $PATH | tr : '\n' | wc -l
