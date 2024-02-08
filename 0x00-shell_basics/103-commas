@@ -1,2 +1,2 @@
 #!/bin/bash
-LC_COLLATE=C ls -xmapv ; printf "\n"
+printf "$(LC_COLLATE=C ls -xmapv)\n"
