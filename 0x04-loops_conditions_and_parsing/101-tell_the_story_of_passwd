@@ -1,1 +1,13 @@
 #!/usr/bin/env bash
+
+# Set the filename
+FILENAME="/etc/passwd"
+
+# Read the file line by line and extract relevant fields
+while IFS=: read -r username _ userid _ groupid _ homedir shell; do
+    echo "The user $username is part of the gang with GROUP_ID $groupid."
+    echo "They live in $homedir and ride $shell."
+    echo "USER ID's place is protected by the passcode PASSWORD."
+    echo "More info about $username: USER ID INFO"
+    echo  # Add a blank line for readability
+done < "$FILENAME"
