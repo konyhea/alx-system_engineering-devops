@@ -17,10 +17,6 @@ handle_sigint() {
     exit 0
 }
 
-# Register the handler for SIGTERM
-
-
-
 # Set up traps for signals
 trap handle_sigint SIGINT 
 trap "cleanup_and_exit" SIGQUIT SIGTERM

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
 # To infinity and Beyond
+
 n=1
 while [ $n -gt 0 ]
 do
