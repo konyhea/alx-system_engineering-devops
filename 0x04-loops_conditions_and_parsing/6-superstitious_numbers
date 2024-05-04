@@ -1,20 +1,25 @@
 #!/usr/bin/env bash
-# display 1 - 20, 4, 7 and 17 special characters
+# Display numbers from 1 to 20 with special messages for specific numbers
 
 n=1
 
 while [ $n -le 20 ]; do
-    if [ $n -eq 4 ]; then
-        echo $n
-        echo "bad luck from China"
-    elif [ $n -eq 9 ]; then
-        echo $n
-        echo "bad luck from Japan"
-    elif [ $n -eq 17 ]; then
-        echo $n
-        echo "bad luck from Italy"
-    else
-        echo $n
-    fi
-    n=$(( n+1 ))
+    case $n in
+        4)
+            echo "$n"
+            echo "bad luck from China"
+            ;;
+        9)
+            echo "$n"
+            echo "bad luck from Japan"
+            ;;
+        17)
+            echo "$n"
+            echo "bad luck from Italy"
+            ;;
+        *)
+            echo "$n"
+            ;;
+    esac
+    n=$((n + 1))
 done

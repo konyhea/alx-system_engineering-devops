@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
 # Specify the path to your Apache access log file
+
 LOGFILE="apache-access.log"
 
 # Use awk to group visitors by IP and HTTP status code
