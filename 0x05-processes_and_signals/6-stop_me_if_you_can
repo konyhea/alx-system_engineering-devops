@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# use Pkill 
+
+pkill -f "6-stop_me_if_you_can"
