@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Get the PID of the "4-to_infinity_and_beyond" process
 
 pidToKill=$(ps aux | grep "4-to_infinity_and_beyond" | grep -v grep | awk '{print $2}')
@@ -6,7 +6,7 @@ pidToKill=$(ps aux | grep "4-to_infinity_and_beyond" | grep -v grep | awk '{prin
 # Check if the PID is valid
 if [[ -n "$pidToKill" ]]; then
     # Kill the process using SIGKILL (signal number 9)
-    kill -9 "$pidToKill"
+    kill -s SIGTERM "$pidToKill"
 else
     echo "No process named '4-to_infinity_and_beyond' found."
 fi
