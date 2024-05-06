@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-# specify the number of occurence
+# specify the output
 
 LOGFILE="apache-access.log"
 
 # Use awk to extract IP and HTTP status code, count occurrences, and sort
-awk '{count[$1" "$9]++} END {for (key in count) print count[key], key}' "$LOGFILE" \
-| awk '{print $1, $2, $3}' \
-| sort -nr
+
+awk '{ print $1 " " $9}' $LOGFILE | sort | uniq -c | sort -rn

@@ -3,10 +3,9 @@
 FILENAME="/etc/passwd"
 
 # Read the file line by line and extract relevant fields
-while IFS=: read -r username password userid groupid  homedir shell; do
-    echo "In the secret underground city of Unixtopia, the user $username is a trusted member of the '$groupid' gang."
-    echo "They reside in the mysterious $homedir district and ride their trusty $shell through the digital alleys."
-    echo "${username}'s place is protected by the formidable passcode '$password'."
-    echo "More information about this enigmatic user: USER ID $userid INFO"
-    echo  # Add a blank line for readability
+while IFS=':' read -r username password uid gid info home shell; do
+  echo "The user $username is part of the $gid gang,"\
+  "lives in $home and rides $shell."\
+  "$uid's place is protected by the passcode $password,"\
+  "more info about the user here: $info"
 done < "$FILENAME"
