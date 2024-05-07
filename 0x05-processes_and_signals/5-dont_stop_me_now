@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
 # Get the PID of the "4-to_infinity_and_beyond" process
 
-pidToKill=$(pgrep -f 4-to_infinity_and_beyond)
-
-# Check if the PID is valid
-if [[ -n "$pidToKill" ]]; then
-    # Kill the process using SIGKILL (signal number 9)
-    kill -s SIGTERM "$pidToKill"
-fi
+pgrep -f 4-to_infinity_and_beyond | xargs kill -s SIGTERM
