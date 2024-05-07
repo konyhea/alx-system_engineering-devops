@@ -10,7 +10,7 @@ fi
 start_process() {
         ./manage_my_process &
         echo "$!" > /var/run/my_process.pid
-        echo "manage_my_process started."
+        echo "manage_my_process started"
 }
 
 # Function to stop the process
@@ -18,9 +18,9 @@ stop_process() {
     if test -f "/var/run/my_process.pid"; then
         kill "$(cat /var/run/my_process.pid)"
         rm /var/run/my_process.pid
-        echo "manage_my_process stopped."
+        echo "manage_my_process stopped"
     else
-        echo "manage_my_process is not running."
+        echo "manage_my_process is not running"
     fi
 }
 
@@ -32,7 +32,7 @@ restart_process() {
     fi
     sleep 1
     ./manage_my_process & echo "$!" > /var/run/my_process.pid
-    echo "manage_my_process restarted."
+    echo "manage_my_process restarted"
 }
 
 # Check command-line argument
