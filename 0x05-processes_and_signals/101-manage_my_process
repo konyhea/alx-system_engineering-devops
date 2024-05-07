@@ -1,27 +1,53 @@
 #!/usr/bin/env bash
-# managemnet 
+# Check for correct number of arguments
 
-if [[ "#" == "1" ]]; then
-   if [[ "$1" == "start" ]]; then
-       ./manage_my_process
-       echo "$!" > /var/run/my_process.pid
-       echo "manage_my_process started"
-    elif [[ "$1" == "stop" ]]; then
-       if test -f "/var/run/my_process.pid"; then
-           kill "$(cat /var/run/my_process.pid)"
-       fi
-       rm /var/run/my_process.pid
-       echo "manage_my_process_stopped"
-    elif [[ "$1" == "restart" ]]; then
-        if test -f "/var/run/my_process.pid"; then
-            kill "$(cat /var/run/my_process.pid)"
-        fi
+if [[ $# -ne 1 ]]; then
+    echo "Usage: manage_my_process {start|stop|restart}"
+    exit 1
+fi
+
+# Function to start the process
+start_process() {
         ./manage_my_process &
-        echo "$!" > kill  /var/run/my_process.pid
-        echo "manage_my_process restarted"
+        echo "$!" > /var/run/my_process.pid
+        echo "manage_my_process started."
+}
+
+# Function to stop the process
+stop_process() {
+    if test -f "/var/run/my_process.pid"; then
+        kill "$(cat /var/run/my_process.pid)"
+        rm /var/run/my_process.pid
+        echo "manage_my_process stopped."
     else
-    echo "Usage: manage_my_process {start|stop|restart}"
+        echo "manage_my_process is not running."
     fi
-else
-    echo "Usage: manage_my_process {start|stop|restart}"
-fi  
+}
+
+# Function to restart the process
+restart_process() {
+    if test -f "/var/run/my_process.pid"; then
+        kill "$(cat /var/run/my_process.pid)"
+        rm /var/run/my_process.pid
+    fi
+    sleep 1
+    ./manage_my_process & echo "$!" > /var/run/my_process.pid
+    echo "manage_my_process restarted."
+}
+
+# Check command-line argument
+case "$1" in
+    start)
+        start_process
+        ;;
+    stop)
+        stop_process
+        ;;
+    restart)
+        restart_process
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+        ;;
+esac
