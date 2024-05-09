@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# script that dispkays listening ports
+netstat -tlnp
