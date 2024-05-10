@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 # Get the PID of the "4-to_infinity_and_beyond" process
 
-pgrep -f 4-to_infinity_and_beyond | xargs kill -s SIGTERM
+getpid=()
+readarray -t getpid < <(pgrep -la -x ".bash*" | grep '4-to_infinity_and_beyond' | awk '{print $1}')
+
+for ((i = 0; i < "${#getpid[@]}"; i++)); do
+    kill -s SIGTERM "${getpid[i]}"
+done
