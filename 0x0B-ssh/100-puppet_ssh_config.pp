@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # configuring the config file
-cat <<EOL > ~/.ssh/config
+cat <<EOL > /etc/ssh/ssh_config
 Host myserver
-    HostName 54.224.16.225
+    HostName 54.209.68.125
     User ubuntu
     IdentityFile ~/.ssh/school
     PasswordAuthentication no
