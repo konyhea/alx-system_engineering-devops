@@ -7,4 +7,4 @@ Host myserver
     User ubuntu
     IdentityFile ~/.ssh/school
     PasswordAuthentication no
-EOL
+EOL 123
