@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Update package list and install nginx
+sudo apt-get update
+sudo apt-get install -y nginx
+
+INDEX_COPY="Hello World!"
+# Configure nginx to return "Hello World!" on the root path
+echo "$INDEX_COPY" | sudo tee /var/www/html/index.html
+
+# Restart nginx without using systemctl
+sudo service nginx restart
+
+# Verify nginx is running
+curl -I localhost | grep "200 OK" &>/dev/null
+
+if [ $? -eq 0 ]; then
+    echo "Nginx is running and serving the 'Hello World!' page."
+else
+    echo "Failed to start Nginx."
+    exit 1
+fi
