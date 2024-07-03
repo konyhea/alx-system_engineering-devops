@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Set up Apache server
+
+# docker run -it holbertonschool/265-0 /bin/bash
+# apt-get update
+# apt-get install -y apache2
+
+# Set ServerName to IP
+# sudo sed -i "s/#ServerName www.example.com/ServerName $IP/" /etc/apache2/sites-available/000-default.conf
+
+# Start Apache
+sudo service apache2 start
