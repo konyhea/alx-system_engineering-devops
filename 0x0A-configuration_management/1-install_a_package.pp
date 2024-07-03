@@ -4,3 +4,9 @@ package { 'flask':
   provider => 'pip3',
 }
 
+package { 'werkzeug':
+  ensure   => '2.0.3',
+  provider => 'pip3',
+}
+
+
