@@ -2,9 +2,9 @@
 # install & configuring 
 
 sudo apt-get -y update
-sudo apt-get -y install haproxy  # Corrected from apt-install to apt-get install
+sudo apt-get -y install haproxy  # Updated from apt-install to apt-get install
 
-sudo chown $USER:$USER /etc/haproxy/haproxy.cfg  # Corrected the syntax for chown command
+sudo chown "$USER":"$USER" /etc/haproxy/haproxy.cfg # Corrected the syntax for chown command
 
 echo "
 frontend http
