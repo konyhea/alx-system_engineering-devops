@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# install & configuring 
+
+sudo apt-get -y update
+sudo apt-get -y install haproxy  # Corrected from apt-install to apt-get install
+
+sudo chown $USER:$USER /etc/haproxy/haproxy.cfg  # Corrected the syntax for chown command
+
+echo "
+frontend http
+  bind *:80
+  mode http
+ 
+  default_backend app
+   
+backend app
+   balance roundrobin
+   mode http
+   server 395714-web-01 54.209.68.125:80 check
+   server 395714-web-02 34.207.120.7:80 check " | sudo tee -a /etc/haproxy/haproxy.cfg > /dev/null  # Redirecting echo output to haproxy.cfg
+
+sudo service haproxy restart
