@@ -12,6 +12,7 @@ global
 	crt-base /etc/ssl/private
 	ssl-default-bind-ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS
 	ssl-default-bind-options no-sslv3
+    ssl-dh-param-file /etc/haproxy/dhparams.pem
 
 defaults
 	log global
@@ -19,8 +20,8 @@ defaults
 	option httplog
 	option dontlognull
 	timeout connect 5000
-	timeout client  50000
-	timeout server  50000
+	timeout client 50000
+	timeout server 50000
 	errorfile 400 /etc/haproxy/errors/400.http
 	errorfile 403 /etc/haproxy/errors/403.http
 	errorfile 408 /etc/haproxy/errors/408.http
@@ -30,19 +31,20 @@ defaults
 	errorfile 504 /etc/haproxy/errors/504.http
 
 frontend konyheatech
+    mode http
 	bind *:80
-	mode http
-	http-request redirect scheme https code 301 if !{ ssl_fc }
-	http-request set-header X-Forwarded-Proto http
-	default_backend konyhea-backend
+    http-request redirect scheme https code 301 unless { ssl_fc }
+    http-request set-header X-Forwarded-Proto http
+    default_backend konyhea-backend
 
-frontend https_front
-	bind *:443 ssl crt /etc/haproxy/certs/www.konyhea.tech.pem
-	http-request set-header X-Forwarded-Proto http
-	default_backend konyhea-backend
+frontend konyheatech-frontend-https
+    bind *:443 ssl crt /etc/haproxy/certs/www.konyhea.tech.pem
+    http-request set-header X-Forwarded-Proto https
+    default_backend konyhea-backend
+
 
 backend konyhea-backend
 	balance roundrobin
 	mode http
-	server 395714-web-01 54.160.114.105:80
-	server 395714-web-02 18.234.107.69:80
+	server 395714-web-01 54.160.114.105:80 check
+	server 395714-web-02 18.234.107.69:80 check
