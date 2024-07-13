@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 # Create an RSA key pair
+cat " OpenSSH private key" > school
 ssh-keygen -t rsa -b 4096 -f ~/school -N 'betty'
