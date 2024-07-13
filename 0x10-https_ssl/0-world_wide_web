@@ -1,5 +1,5 @@
  #!/usr/bin/env bash
-# Function to fetch subdomain information
+ #Function to fetch subdomain information
 
 get_subdomain_spec () {
 
