@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-# Run Nginx as Nginx
-sudo adduser nginx
-sudo chown -R nginx:nginx /var/log/nginx
-sudo chown -R nginx:nginx /var/lib/nginx
-sudo sed -i 's/^user .*/user nginx;/g' /etc/nginx/nginx.conf
-sudo sed -i 's/^listen .*/listen 8080;/g' /etc/nginx/sites-available/default
-sudo systemctl restart nginx
+# Run nginx as nginx user
+sudo pkill -f apache2
+sleep 10
+sudo chmod 777 /etc/nginx/nginx.conf
+sudo sed -i 's/80/8080/g' /etc/nginx/sites-enabled/default
+sudo -u nginx nginx
