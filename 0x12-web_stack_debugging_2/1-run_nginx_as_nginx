@@ -1,21 +1,16 @@
 #!/usr/bin/env bash
-# run nginx as nginx
+# Run nginx as nginx user
 
-# Create the nginx user if it does not exist
-if ! id -u nginx > /dev/null 2>&1; then
-    sudo adduser --system --no-create-home --shell /bin/false --group --disabled-login nginx
-fi
+# kill apache2 server
+sudo pkill -f apache2
 
-# Change the ownership of the Nginx log directory to the 'nginx' user and group
-sudo chown -R nginx:nginx /var/log/nginx
+sleep 10
 
-# Change the ownership of the Nginx lib directory to the 'nginx' user and group
-sudo chown -R nginx:nginx /var/lib/nginx
+# change perms on config file
+sudo chmod 777 /etc/nginx/nginx.conf
 
-# Update the Nginx configuration to run as the 'nginx' user and listen on port 8080
-sudo sed -i 's/^user .*/user nginx;/g' /etc/nginx/nginx.conf
-sudo sed -i 's/^listen .*/listen 8080;/g' /etc/nginx/sites-available/default
+# update listening ports
+sudo sed -i 's/80/8080/g' /etc/nginx/sites-enabled/default
 
-# Restart the Nginx service to apply the changes
-sudo systemctl restart nginx
-
+# restart nginx
+sudo -u nginx nginx
