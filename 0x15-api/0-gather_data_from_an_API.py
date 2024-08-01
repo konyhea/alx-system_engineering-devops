@@ -24,7 +24,7 @@ def gather_data_from_API(employee_id):
     TOTAL_NUMBER_OF_TASKS = len(todo_data)
     NUMBER_OF_DONE_TASKS = len(COMPLETED_TASKS)
     print(
-        f"Employee {EMPLOYEE_NAME} is done with tasks "
+        f"Employee {EMPLOYEE_NAME} is done with tasks"
         f"({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):"
     )
     for task in COMPLETED_TASKS:
