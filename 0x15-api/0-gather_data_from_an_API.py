@@ -23,8 +23,10 @@ def gather_data_from_API(employee_id):
     COMPLETED_TASKS = [task for task in todo_data if task.get("completed")]
     TOTAL_NUMBER_OF_TASKS = len(todo_data)
     NUMBER_OF_DONE_TASKS = len(COMPLETED_TASKS)
-    print(f"Employee {EMPLOYEE_NAME} is done with tasks\
-                ({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
+    print(
+        f"Employee {EMPLOYEE_NAME} is done with tasks "
+        f"({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):"
+    )
     for task in COMPLETED_TASKS:
         print(f"\t {task['title']}")
 
